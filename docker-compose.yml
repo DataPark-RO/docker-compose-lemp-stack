@@ -6,6 +6,7 @@ services:
             context: ./docker
             dockerfile: php.Dockerfile
         container_name: ${APP_NAME:?err}-php
+        restart: unless-stopped	
         volumes:
             - './app:/var/www/html'
         depends_on:
@@ -19,6 +20,7 @@ services:
             - '443:443'
         links:
             - 'php'
+        restart: unless-stopped	
         volumes:
             - './app:/var/www/html'
             - './config/nginx:/etc/nginx/conf.d'
@@ -26,7 +28,7 @@ services:
     mariadb:
         image: mariadb:10.4
         container_name: ${APP_NAME:?err}-mariadb
-        restart: 'on-failure'
+        restart: unless-stopped	
         #ports:
         #    - 3306:3306
         environment:
@@ -41,5 +43,6 @@ services:
         environment:
             - PMA_ARBITRARY=0
             - PMA_HOST=mariadb
+        restart: unless-stopped	
         depends_on:
             - mariadb
