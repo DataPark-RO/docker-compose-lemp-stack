@@ -8,7 +8,8 @@ The following versions are used.
 
 * PHP 7.2 (FPM) - With MySQLi driver optionally (Uncomment line from php.Dockerfile)
 * Nginx 1.13.6
-* MariaDB 10.3.9
+* MariaDB 10.4
+* phpMyAdmin (on port 8000)
 
 ## Configuration
 
@@ -27,7 +28,7 @@ To use it, simply follow the following steps:
 
 ##### Clone this repository.
 
-Clone this repository with the following command: `git clone https://github.com/stevenliebregt/docker-compose-lemp-stack.git`.
+Clone this repository with the following command: `git clone https://github.com/DataPark-RO/docker-compose-lemp-stack.git`.
 
 ##### Start the server.
 
