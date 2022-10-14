@@ -6,7 +6,7 @@ services:
             context: ./docker
             dockerfile: php.Dockerfile
         container_name: ${APP_NAME:?err}-php
-        restart: unless-stopped	
+        restart: unless-stopped
         volumes:
             - './app:/var/www/html'
         depends_on:
@@ -43,6 +43,6 @@ services:
         environment:
             - PMA_ARBITRARY=0
             - PMA_HOST=mariadb
-        restart: unless-stopped	
+        restart: unless-stopped
         depends_on:
             - mariadb
