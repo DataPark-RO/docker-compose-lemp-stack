@@ -1,7 +1,7 @@
 version: '3'
 services:
     php:
-        # image: 'php:7.2-fpm'
+        # image: 'php:8.1-fpm'
         build:
             context: ./docker
             dockerfile: php.Dockerfile
@@ -34,10 +34,11 @@ services:
         environment:
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?err}
         volumes:
-            - ${PWD}
+            - ${APP_NAME:?err}-mariadb-data:/var/lib/mysql
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin:latest
+        container_name: ${APP_NAME:?err}-phpmyadmin
         ports:
             - 8000:80
         environment:
