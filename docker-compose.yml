@@ -5,7 +5,7 @@ services:
         build:
             context: ./docker
             dockerfile: php.Dockerfile
-        container_name: ${APP_NAME:?err}-php
+        container_name: php
         restart: unless-stopped
         volumes:
             - './app:/var/www/html'
@@ -14,7 +14,7 @@ services:
 
     nginx:
         image: nginx:latest
-        container_name: ${APP_NAME:?err}-nginx
+        container_name: nginx
         ports:
             - '80:80'
             - '443:443'
@@ -27,18 +27,18 @@ services:
 
     mariadb:
         image: mariadb:10.4
-        container_name: ${APP_NAME:?err}-mariadb
+        container_name: mariadb
         restart: unless-stopped
         #ports:
         #    - 3306:3306
         environment:
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?err}
         volumes:
-            - ${APP_NAME:?err}-mariadb-data:/var/lib/mysql
+            - mariadb-data:/var/lib/mysql
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin:latest
-        container_name: ${APP_NAME:?err}-phpmyadmin
+        container_name: phpmyadmin
         ports:
             - 8000:80
         environment:
@@ -48,4 +48,4 @@ services:
         depends_on:
             - mariadb
 volumes:
-    ${APP_NAME:?err}-mariadb-data:
+    mariadb-data:
