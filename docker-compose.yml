@@ -47,3 +47,5 @@ services:
         restart: unless-stopped
         depends_on:
             - mariadb
+volumes:
+    ${APP_NAME:?err}-mariadb-data:
